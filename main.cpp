@@ -1,14 +1,6 @@
 #include "User_Interface.h"
-int main(int argc, char *argv[])
-{
-    try
-    {
-        User_Interface ui(argc,argv);
-        ui();
+int main(int argc, char *argv[]) {
+    User_Interface ui(argc,argv);
+    ui();
+            return 0;
     }
-    catch(const std::exception& e)
-    {
-        std::cerr << e.what() << '\n';
-    }
-    return 0;
-}

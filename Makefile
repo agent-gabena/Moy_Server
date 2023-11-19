@@ -1,10 +1,11 @@
-TARGET =  Server
-SOURCES = *.cpp
+target =  main
+sources = *.cpp
 CC = g++
 CCFlags = -Wall
-LIBS = -lcrypto++ -l boost_program_options
+LDLIBS = -lcrypto++ -l boost_program_options
+OPT = -Ofast
 all:build
 build:
-	$(CC) $(CCFlags) $(SOURCES) -o $(TARGET) $(LIBS)
+	$(CC) $(CCFlags) $(OPT) $(sources) -o $(target) $(LDLIBS)
 dbg:
-	$(CC) -g $(SOURCES) -o $(TARGET)DBG
+	$(CC) -g $(sources) -o $(target)DBG

@@ -55,7 +55,10 @@ int Comunicator::autorized(int work_sock, std::string file_name, std::map <std::
     int size_m = recv(work_sock, msg.get(), 256, 0);
     std::string login(msg.get(), size_m);
     std::string password = ClientBase::find(login, all_names);
-    //СВЕРКА ЛОГИНОВ
+    if (password == "")
+    {
+        throw ServerError("Неверный логин");
+    }
     if (password.empty()) {
         send(work_sock, err.c_str(), err.length(), 0);
         close(work_sock);
@@ -70,7 +73,7 @@ int Comunicator::autorized(int work_sock, std::string file_name, std::map <std::
     std::string digest;
     digest = MD(sah);
     std::string new_msg(msg.get(),size_m);
-    //СВЕРКА ПАРОЛЕЙ
+    //СВЕРКА HASH
     if(digest != new_msg) {
         send(work_sock, err.c_str(), err.length(), 0);
         close(work_sock);

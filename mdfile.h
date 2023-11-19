@@ -1,6 +1,5 @@
 #pragma once
 #include <netinet/in.h>
-#include <map>
 #include <limits>
 #include <iostream>
 #include <unistd.h>
@@ -8,22 +7,18 @@
 #include <fstream>
 #include <string>
 #include <cryptopp/cryptlib.h>
-#include <cryptopp/hex.h>
-#include <boost/program_options.hpp>
-#include <memory>
-#include <random>
+#include <cryptopp/hex.h> // HexEncoder
+#include <boost/program_options.hpp> 
 #define CRYPTOPP_ENABLE_NAMESPACE_WEAK 1
 using namespace CryptoPP;
-#include <cryptopp/md5.h>
-#include<exception>
-#include<ctime>
-class ServerError: public std::runtime_error{
-    public:
-    ServerError(const char* msg): std::runtime_error(msg){};
-    ServerError(const std::string &msg): std::runtime_error(msg){};
-};
-class LogWriter
-{
-public:
-    static void log(std::string &way, std::string msg );
-};
+using namespace std;
+#include <cryptopp/md5.h> // MD%, для другого алгоритма - другой заголовочный файл
+std::string MD(std::string sah);
+void errors(std::string error, std::string name);
+int er(std::string file_name, std::string file_error);
+void msgsend(int work_sock, string mess);
+int autorized(int work_sock, string file_name, string file_error);
+
+
+
+

@@ -2,8 +2,7 @@
 #include "Calculator.h"
 #pragma once
 namespace po = boost::program_options;
-class User_Interface
-{
+class User_Interface {
 private:
     po::options_description descr;
     po::variables_map vm;
